@@ -5,61 +5,52 @@ const CherryBlossom = ({ clickCount }) => {
 
   useEffect(() => {
     if (clickCount > 0) {
-      const newCherry = {
-        id: Date.now() + Math.random(),
-        left: `${Math.random() * 80 + 10}%`, // Keep cherries mostly centered
-      };
-      setFallingCherries(prev => [...prev, newCherry]);
+      const newCherries = Array.from({ length: 4 }, (_, i) => ({
+        id: Date.now() + i,
+        left: `${Math.random() * 80 + 10}%`,
+        delay: i * 0.2,
+      }));
       
-      // Remove cherry after animation
+      setFallingCherries(prev => [...prev, ...newCherries]);
+      
       setTimeout(() => {
-        setFallingCherries(prev => prev.filter(cherry => cherry.id !== newCherry.id));
+        setFallingCherries(prev => prev.filter(c => 
+          !newCherries.find(nc => nc.id === c.id)
+        ));
       }, 5000);
     }
   }, [clickCount]);
 
   return (
     <>
-      {/* Main cherry blossom */}
-      <div className="fixed top-20 right-10 z-20 animate-float">
-        <div className="relative">
-          {/* Flower */}
-          <div className="relative">
-            <div className="w-24 h-24 bg-gradient-to-br from-cherry-blossom to-pink-300 rounded-full opacity-90"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-yellow-200 rounded-full"></div>
-            
-            {/* Petals */}
-            {[...Array(5)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-12 h-12 bg-gradient-to-br from-pink-200 to-cherry-blossom rounded-full"
-                style={{
-                  transform: `rotate(${i * 72}deg) translateY(-50px)`,
-                  transformOrigin: 'center',
-                }}
-              />
-            ))}
-          </div>
-          
-          {/* Stem */}
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-1 h-20 bg-gradient-to-b from-green-600 to-green-400"></div>
+      {/* Super simple GIF - guaranteed to work */}
+      <div className="fixed top-0 right-0 pointer-events-none z-20">
+        <div 
+            style={{
+            transform: 'scale(1.8)',           // 0.8x size
+            transformOrigin: 'top right',      // Scale from top-right
+            marginRight: '-1cm',               // Hide 1cm from right
+            }}
+        >
+            <img 
+            src="/images/cherry-blossom.gif" 
+            alt="Cherry Blossom"
+            className="w-64 h-64 object-contain"
+            />
         </div>
-      </div>
+        </div>
 
-      {/* Falling cherries */}
+      {/* Simple falling cherries */}
       {fallingCherries.map(cherry => (
         <div
           key={cherry.id}
           className="fixed top-0 z-30 animate-fall"
           style={{ 
             left: cherry.left,
-            animationDelay: `${Math.random() * 0.5}s`
+            animationDelay: `${cherry.delay}s`
           }}
         >
-          <div className="relative">
-            <div className="w-6 h-6 bg-gradient-to-br from-cherry-red to-pink-600 rounded-full"></div>
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-3 bg-green-500"></div>
-          </div>
+          <div className="text-3xl">🍒</div>
         </div>
       ))}
     </>
