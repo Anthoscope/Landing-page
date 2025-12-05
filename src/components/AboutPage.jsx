@@ -36,41 +36,14 @@ const AboutPage = () => {
             <h3 className="text-3xl font-bold text-gray-800">What is Anthoscope?</h3>
             
             <p className="text-gray-700">
-              Anthoscope is an innovative visualization platform that transforms complex datasets 
-              into beautiful, interactive visual experiences. Using advanced algorithms and 
-              cutting-edge rendering techniques, it reveals patterns and insights that 
-              traditional analysis methods often overlook.
+              Anthoscope is an alallalalalalla
             </p>
 
-            <h4 className="text-2xl font-semibold text-gray-800 pt-4">Features</h4>
-            
-            <ul className="list-disc pl-6 text-gray-700 space-y-2">
-              <li>Real-time data visualization and analysis</li>
-              <li>Interactive 3D and 2D rendering capabilities</li>
-              <li>Customizable visualization pipelines</li>
-              <li>Collaborative workspace for team analysis</li>
-              <li>Export options for presentations and reports</li>
-            </ul>
-
-            <h4 className="text-2xl font-semibold text-gray-800 pt-4">Technical Architecture</h4>
+            <h4 className="text-2xl font-semibold text-gray-800 pt-4">The Rita story!</h4>
             
             <p className="text-gray-700">
-              The platform leverages a microservices architecture with separate servers for 
-              different functionalities. The landing page and about section are served from 
-              one server, while the main application logic runs on a dedicated visualization 
-              server. This separation allows for scalability and independent deployment of 
-              components.
+              Rita Rita Rita Rita Rita Rita Rita 
             </p>
-
-            <div className="bg-gradient-to-r from-pink-50 to-blue-50 p-6 rounded-xl border border-pink-200 my-6">
-              <h5 className="text-xl font-semibold text-gray-800 mb-3">Server Setup Note</h5>
-              <p className="text-gray-700">
-                Yes, you can absolutely use separate servers! The landing page can be hosted 
-                on one server (like Netlify, Vercel, or your own), while the main app your 
-                friend is building can run on its own server. They can communicate via API calls.
-                You can even host this landing page for free on services like Vercel or Netlify.
-              </p>
-            </div>
 
             <h4 className="text-2xl font-semibold text-gray-800">Development Team</h4>
             
@@ -82,8 +55,7 @@ const AboutPage = () => {
 
             <blockquote className="border-l-4 border-cherry-red pl-4 py-2 my-6">
               <p className="text-gray-700 italic">
-                "We believe that every dataset tells a story. Our mission is to give that story 
-                a visual voice."
+                "For all the Ritas out there_"
               </p>
             </blockquote>
           </div>

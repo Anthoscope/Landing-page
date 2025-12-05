@@ -43,8 +43,8 @@ const LandingPage = () => {
           
         </div>
         
-        <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl">
-          Discover the unseen patterns in your data. A visual journey through information.
+        <p className="text-xl md:text-1xl text-light-crimson mb-10 max-w-2xl">
+          Making you happy
         </p>
 
         <button
