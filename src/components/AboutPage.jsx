@@ -16,15 +16,19 @@ const AboutPage = () => {
       </Link>
 
       <div className="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
-        {/* Header image */}
-        <div className="mb-12 rounded-2xl overflow-hidden shadow-2xl">
-          <div className="h-64 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 flex items-center justify-center">
-            <div className="text-white text-center p-8">
-              <h2 className="text-4xl font-bold mb-4">About Anthoscope</h2>
-              <p className="text-xl opacity-90">Visualizing data in new dimensions</p>
-            </div>
-          </div>
-        </div>
+        {/* Header with your anthoscope-logo2.jpg */}
+        {/* Full-width logo header */}
+<div className="mb-12 rounded-2xl overflow-hidden shadow-2xl">
+  <div className="relative h-80">
+    {/* Your logo as background */}
+    <img 
+      src="/images/anthoscope-logo2.jpg" 
+      alt="Anthoscope"
+      className="w-full h-full object-cover"
+    />
+    
+  </div>
+</div>
 
         {/* Content */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl">
