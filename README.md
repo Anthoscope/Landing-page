@@ -12,7 +12,7 @@ Installation Steps
 1. Clone the repository:
 ```bash
 git clone https://github.com/Anthoscope/Landing-page
-cd anthoscope-landing
+cd Landing_page
 ```
 
 2.Install dependencies:
