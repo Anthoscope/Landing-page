@@ -36,13 +36,13 @@ const AboutPage = () => {
             <h3 className="text-3xl font-bold text-gray-800">What is Anthoscope?</h3>
             
             <p className="text-gray-700">
-              Anthoscope is an alallalalalalla
+              Anthoscope is an interactive web platform designed to help people manage their pollen allergies more effectively. It combines real-time pollen data, user input, and geospatial visualization to deliver clear, map-based insights into allergy risks across regions. Through a color-coded map, users can instantly identify safe or high-risk areas based on pollen concentration. What makes Anthoscope unique is its community-driven component: users can share their personal experiences and rate areas according to their allergy symptoms. This feedback loop creates a continuously improving, human-centered database that complements scientific forecasts with lived experiences. By combining environmental data and citizen input, Anthoscope promotes public awareness and healthier decisions for individuals with allergies, supporting both preventive healthcare and outdoor well-being. The project prototype already visualizes pollen data on an interactive map, marking the first step toward a comprehensive environmental health platform.
             </p>
 
             <h4 className="text-2xl font-semibold text-gray-800 pt-4">The Rita story!</h4>
             
             <p className="text-gray-700">
-              Rita Rita Rita Rita Rita Rita Rita 
+              Rita comes from the travel land, where everyone loves to travel and eat cherries. Her girl friends used to talk endlessly about the magical japanese cherry season and how great it would be to travel there. Unfortunatelly, our friend Rita has some serious pollen allergies, which would make the travel a lot harder and unpleasant. That's when she found us, the Anthoscope people, dedicated to predicting pollen and making her travels easier and more predictable!
             </p>
 
             <h4 className="text-2xl font-semibold text-gray-800">Development Team</h4>
