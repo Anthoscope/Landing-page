@@ -33,8 +33,8 @@ const HomePage = () => {
   };
 
   const buttonColor = clickCount > 0 
-    ? 'bg-rose-800 hover:bg-rose-900' 
-    : 'bg-rose-700 hover:cherry-red';
+  ? 'bg-rose-950 hover:bg-rose-900' // Darker red when clicked/launching
+  : 'bg-cherry-red hover:bg-rose-700'; // Cherry Red by default!
 
   return (
     /* ADDED: selection classes to the main wrapper */
