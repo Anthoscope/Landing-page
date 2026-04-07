@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import AnimatedBackground from './AnimatedBackground';
 
 // Icons
-const InstagramIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-  </svg>
-);
-
 const LinkedinIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
@@ -25,7 +19,6 @@ const GithubIcon = () => (
 const TeamMemberCard = ({ photo, name, caption, links }) => (
   <div className="group flex flex-col items-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50 max-w-[320px] w-full mx-auto relative overflow-hidden">
     
-    {/* Hidden cherry-red accent bar that appears on hover */}
     <div className="absolute top-0 left-0 w-full h-1.5 bg-cherry-red opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
     <div className="w-48 h-48 mb-6 rounded-2xl overflow-hidden shadow-sm bg-gray-100 flex items-center justify-center">
@@ -40,8 +33,18 @@ const TeamMemberCard = ({ photo, name, caption, links }) => (
     <p className="text-sm font-extrabold text-cherry-red uppercase tracking-widest mb-6 text-center">{caption}</p>
     
     <div className="flex space-x-6 text-gray-800">
-      <a href={links.linkedin} className="hover:text-cherry-red hover:-translate-y-1 transition-all"><LinkedinIcon /></a>
-      <a href={links.github} className="hover:text-cherry-red hover:-translate-y-1 transition-all"><GithubIcon /></a>
+      {/* Conditionally render LinkedIn if link is not "#" */}
+      {links.linkedin !== "#" && (
+        <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red hover:-translate-y-1 transition-all">
+          <LinkedinIcon />
+        </a>
+      )}
+      {/* Conditionally render Github if link is not "#" */}
+      {links.github !== "#" && (
+        <a href={links.github} target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red hover:-translate-y-1 transition-all">
+          <GithubIcon />
+        </a>
+      )}
     </div>
   </div>
 );
@@ -53,8 +56,8 @@ const AboutPage = () => {
     { photo: "/images/evaggelia.png", name: "Evangelia Patsatzaki", caption: "Electrical & Computer Engineer", links: { linkedin: "https://www.linkedin.com/in/evangelia-patsatzaki-049b8a2b3/", github: "https://github.com/Epatsatzaki" } },
     { photo: "/images/velloukanikaki.png", name: "Georgios Vellios", caption: "Electronic Engineer", links: { linkedin: "https://www.linkedin.com/in/george-vellios-2106000v/", github: "https://github.com/Niel518" } },
     { photo: "/images/nikos.png", name: "Nikos Chatzis", caption: "Surveying Engineer", links: {linkedin: "#", github: "https://github.com/nikoschatzes657-design" } },
-    { photo: "/images/team5.jpg", name: "Maria Maragkou", caption: "Agrοnomist", links: {linkedin: "#", github: "#" } },
-    { photo: "/images/team6.jpg", name: "Grigoris Kaitzis", caption: "Business Administration", links: {linkedin: "#", github: "#" } },
+    { photo: "/images/team5.jpg", name: "Maria Maragou", caption: "Agrοnomist", links: {linkedin: "https://www.linkedin.com/in/maria-maragou-22a3b91a2/", github: "#" } },
+    { photo: "/images/team6.jpg", name: "Grigoris Kaitzis", caption: "Business Administration", links: {linkedin: "https://www.linkedin.com/in/grigorioskaitzis/", github: "#" } },
   ];
 
   return (
