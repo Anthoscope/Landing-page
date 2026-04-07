@@ -34,15 +34,16 @@ const HomePage = () => {
 
   const buttonColor = clickCount > 0 
     ? 'bg-rose-800 hover:bg-rose-900' 
-    : 'bg-rose-600 hover:bg-rose-700';
+    : 'bg-rose-700 hover:cherry-red';
 
   return (
-    <div className="relative min-h-screen overflow-hidden flex flex-col">
-      <AnimatedBackground />
+    /* ADDED: selection classes to the main wrapper */
+    <div className="relative min-h-screen overflow-hidden flex flex-col selection:bg-cherry-red selection:text-white">
+          <AnimatedBackground />
       
       <Link
         to="/about"
-        className="fixed top-6 right-6 z-30 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full text-gray-700 hover:text-rose-600 transition-colors duration-300 shadow-lg hover:shadow-xl font-medium border border-gray-100"
+        className="fixed top-6 right-6 z-30 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full text-gray-700 hover:text-cherry-red transition-colors duration-300 shadow-lg hover:shadow-xl font-medium border border-gray-100"
       >
         About
       </Link>
@@ -54,8 +55,7 @@ const HomePage = () => {
           <img 
             src={`${base}images/anthologo_neg.png`} 
             alt="Anthoscope Logo" 
-            className="w-full h-full object-contain scale-[2.1]" 
-          />
+            className="w-full h-full object-contain scale-[2.1] select-none pointer-events-none"/>
         </div>
         
         <p className="text-xl md:text-2xl mb-10 max-w-2xl -mt-4 relative z-20 font-medium text-gray-800 tracking-wide">
@@ -76,13 +76,13 @@ const HomePage = () => {
 
       <footer className="relative z-20 w-full px-8 py-6 flex flex-col md:flex-row items-center justify-between text-gray-600 text-sm">
         <div className="flex items-center space-x-6 mb-6 md:mb-0 md:w-1/3">
-          <a href="https://instagram.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-rose-600 transition-colors transform hover:scale-110">
+          <a href="https://instagram.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors transform hover:scale-110">
             <InstagramIcon />
           </a>
-          <a href="https://linkedin.com/company/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-rose-600 transition-colors transform hover:scale-110">
+          <a href="https://linkedin.com/company/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors transform hover:scale-110">
             <LinkedinIcon />
           </a>
-          <a href="https://github.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-rose-600 transition-colors transform hover:scale-110">
+          <a href="https://github.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors transform hover:scale-110">
             <GithubIcon />
           </a>
         </div>
