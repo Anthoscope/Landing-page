@@ -70,7 +70,7 @@ const AboutPage = () => {
           <img src="/images/anthologo_neg.png" className="h-16 w-auto object-contain scale-[2.0] origin-left" alt="Anthoscope Logo" />
         </Link>
         <Link to="/" className="text-sm font-bold text-gray-500 hover:text-cherry-red transition-colors uppercase tracking-widest">
-          ← Return to Map
+          ← Return to Home
         </Link>
       </nav>
 
