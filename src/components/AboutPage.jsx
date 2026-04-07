@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AnimatedBackground from './AnimatedBackground';
 
-// Icons
+// Helper to handle the base path
+const base = import.meta.env.BASE_URL;
+
+// Icons (Unchanged)
 const LinkedinIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
@@ -18,28 +21,22 @@ const GithubIcon = () => (
 // TEAM CARD COMPONENT 
 const TeamMemberCard = ({ photo, name, caption, links }) => (
   <div className="group flex flex-col items-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-50 max-w-[320px] w-full mx-auto relative overflow-hidden">
-    
     <div className="absolute top-0 left-0 w-full h-1.5 bg-cherry-red opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
     <div className="w-48 h-48 mb-6 rounded-2xl overflow-hidden shadow-sm bg-gray-100 flex items-center justify-center">
       <img 
         src={photo} 
         alt={name} 
-        className="w-full h-full object-cover text-transparent group-hover:scale-105 transition-transform duration-500" 
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
       />
     </div>
-    
     <h5 className="font-black text-gray-900 text-2xl mb-1 text-center">{name}</h5>
     <p className="text-sm font-extrabold text-cherry-red uppercase tracking-widest mb-6 text-center">{caption}</p>
-    
     <div className="flex space-x-6 text-gray-800">
-      {/* Conditionally render LinkedIn if link is not "#" */}
       {links.linkedin !== "#" && (
         <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red hover:-translate-y-1 transition-all">
           <LinkedinIcon />
         </a>
       )}
-      {/* Conditionally render Github if link is not "#" */}
       {links.github !== "#" && (
         <a href={links.github} target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red hover:-translate-y-1 transition-all">
           <GithubIcon />
@@ -52,12 +49,12 @@ const TeamMemberCard = ({ photo, name, caption, links }) => (
 // MAIN PAGE COMPONENT
 const AboutPage = () => {
   const teamMembers = [
-    { photo: "/images/mylonas.png", name: "Alexandros Mylonas", caption: "Physicist", links: { linkedin: "https://www.linkedin.com/in/alexmyl/", github: "https://github.com/almylonas" } },
-    { photo: "/images/evaggelia.png", name: "Evangelia Patsatzaki", caption: "Electrical & Computer Engineer", links: { linkedin: "https://www.linkedin.com/in/evangelia-patsatzaki-049b8a2b3/", github: "https://github.com/Epatsatzaki" } },
-    { photo: "/images/velloukanikaki.png", name: "Georgios Vellios", caption: "Electronic Engineer", links: { linkedin: "https://www.linkedin.com/in/george-vellios-2106000v/", github: "https://github.com/Niel518" } },
-    { photo: "/images/nikos.png", name: "Nikos Chatzis", caption: "Surveying Engineer", links: {linkedin: "#", github: "https://github.com/nikoschatzes657-design" } },
-    { photo: "/images/team5.jpg", name: "Maria Maragou", caption: "Agrοnomist", links: {linkedin: "https://www.linkedin.com/in/maria-maragou-22a3b91a2/", github: "#" } },
-    { photo: "/images/team6.jpg", name: "Grigoris Kaitzis", caption: "Business Administration", links: {linkedin: "https://www.linkedin.com/in/grigorioskaitzis/", github: "#" } },
+    { photo: `${base}images/mylonas.png`, name: "Alexandros Mylonas", caption: "Physicist", links: { linkedin: "https://www.linkedin.com/in/alexmyl/", github: "https://github.com/almylonas" } },
+    { photo: `${base}images/evaggelia.png`, name: "Evangelia Patsatzaki", caption: "Electrical & Computer Engineer", links: { linkedin: "https://www.linkedin.com/in/evangelia-patsatzaki-049b8a2b3/", github: "https://github.com/Epatsatzaki" } },
+    { photo: `${base}images/velloukanikaki.png`, name: "Georgios Vellios", caption: "Electronic Engineer", links: { linkedin: "https://www.linkedin.com/in/george-vellios-2106000v/", github: "https://github.com/Niel518" } },
+    { photo: `${base}images/nikos.png`, name: "Nikos Chatzis", caption: "Surveying Engineer", links: {linkedin: "#", github: "https://github.com/nikoschatzes657-design" } },
+    { photo: `${base}images/team5.jpg`, name: "Maria Maragou", caption: "Agrοnomist", links: {linkedin: "https://www.linkedin.com/in/maria-maragou-22a3b91a2/", github: "#" } },
+    { photo: `${base}images/team6.jpg`, name: "Grigoris Kaitzis", caption: "Business Administration", links: {linkedin: "https://www.linkedin.com/in/grigorioskaitzis/", github: "#" } },
   ];
 
   return (
@@ -67,7 +64,7 @@ const AboutPage = () => {
       {/* 1. TOP NAVIGATION */}
       <nav className="fixed top-0 left-0 w-full z-50 px-8 py-5 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <img src="/images/anthologo_neg.png" className="h-16 w-auto object-contain scale-[2.0] origin-left" alt="Anthoscope Logo" />
+          <img src={`${base}images/anthologo_neg.png`} className="h-16 w-auto object-contain scale-[2.0] origin-left" alt="Anthoscope Logo" />
         </Link>
         <Link to="/" className="text-sm font-bold text-gray-500 hover:text-cherry-red transition-colors uppercase tracking-widest">
           ← Return to Home
@@ -90,11 +87,10 @@ const AboutPage = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-cherry-red to-pink-400 rounded-[2rem] blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
             <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white bg-white transition-all duration-500">
               <img 
-                src="/images/map.png" 
+                src={`${base}images/map.png`} 
                 alt="Anthoscope Map Interface" 
                 className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" 
               />
-              <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -106,7 +102,7 @@ const AboutPage = () => {
           <div className="md:w-5/12">
             <div className="relative">
               <div className="absolute inset-0 bg-cherry-red rounded-3xl transform -rotate-3 scale-105 opacity-20"></div>
-              <img src="/images/rita.png" alt="Rita" className="relative z-10 rounded-3xl shadow-xl w-full" />
+              <img src={`${base}images/rita.png`} alt="Rita" className="relative z-10 rounded-3xl shadow-xl w-full" />
             </div>
           </div>
           <div className="md:w-7/12">
@@ -149,7 +145,6 @@ const AboutPage = () => {
           Launch Anthoscope
         </Link>
       </footer>
-      
     </div>
   );
 };

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 const CherryBlossom = ({ clickCount }) => {
   const [fallingCherries, setFallingCherries] = useState([]);
+  // Get the base URL (e.g., /Anthoscope-Landing-page/)
+  const base = import.meta.env.BASE_URL;
 
   useEffect(() => {
     if (clickCount > 0) {
@@ -23,24 +25,23 @@ const CherryBlossom = ({ clickCount }) => {
 
   return (
     <>
-      {/* Super simple GIF - guaranteed to work */}
       <div className="fixed top-0 right-0 pointer-events-none z-20">
         <div 
             style={{
-            transform: 'scale(1.8)',           // 0.8x size
-            transformOrigin: 'top right',      // Scale from top-right
-            marginRight: '-1cm',               // Hide 1cm from right
+            transform: 'scale(1.8)',
+            transformOrigin: 'top right',
+            marginRight: '-1cm',
             }}
         >
             <img 
-            src="/images/cherry-blossom.gif" 
+            src={`${base}images/cherry-blossom.gif`} 
             alt="Cherry Blossom"
             className="w-64 h-64 object-contain"
             />
         </div>
         </div>
 
-      {/* Simple falling cherries */}
+      {/* Simple falling cherries (These are emojis, so they don't need base paths) */}
       {fallingCherries.map(cherry => (
         <div
           key={cherry.id}

@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import CherryBlossom from './CherryBlossom';
 import AnimatedBackground from './AnimatedBackground';
 
-// --- Local SVG Components ---
+// Helper for paths
+const base = import.meta.env.BASE_URL;
+
+// --- Local SVG Components (Unchanged) ---
 const InstagramIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
@@ -29,7 +32,6 @@ const HomePage = () => {
     setClickCount(prev => prev + 1);
   };
 
-  // Swapped to warmer rose tones to avoid the magenta medical look
   const buttonColor = clickCount > 0 
     ? 'bg-rose-800 hover:bg-rose-900' 
     : 'bg-rose-600 hover:bg-rose-700';
@@ -38,7 +40,6 @@ const HomePage = () => {
     <div className="relative min-h-screen overflow-hidden flex flex-col">
       <AnimatedBackground />
       
-      {/* Top Navigation */}
       <Link
         to="/about"
         className="fixed top-6 right-6 z-30 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full text-gray-700 hover:text-rose-600 transition-colors duration-300 shadow-lg hover:shadow-xl font-medium border border-gray-100"
@@ -48,24 +49,19 @@ const HomePage = () => {
 
       <CherryBlossom clickCount={clickCount} />
 
-      {/* Main Content Area */}
       <div className="relative z-10 flex flex-col items-center justify-center flex-grow px-4 text-center">
-        
-        {/* Large Logo */}
         <div className="mb-0 -mt-10 flex items-center justify-center overflow-hidden h-48 md:h-64 w-full max-w-4xl">
           <img 
-            src="/images/anthologo_neg.png" 
+            src={`${base}images/anthologo_neg.png`} 
             alt="Anthoscope Logo" 
             className="w-full h-full object-contain scale-[2.1]" 
           />
         </div>
         
-        {/* Tagline - Improved Contrast and Functional Copy */}
         <p className="text-xl md:text-2xl mb-10 max-w-2xl -mt-4 relative z-20 font-medium text-gray-800 tracking-wide">
           Navigate allergy season with confidence.
         </p>
 
-        {/* Primary Action Button */}
         <button
           onClick={handleButtonClick}
           className={`px-10 py-4 text-2xl font-bold rounded-full text-white transition-all duration-500 transform hover:scale-105 shadow-xl ${buttonColor}`}
@@ -78,9 +74,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Three-Column Footer */}
       <footer className="relative z-20 w-full px-8 py-6 flex flex-col md:flex-row items-center justify-between text-gray-600 text-sm">
-        
         <div className="flex items-center space-x-6 mb-6 md:mb-0 md:w-1/3">
           <a href="https://instagram.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-rose-600 transition-colors transform hover:scale-110">
             <InstagramIcon />
@@ -104,7 +98,6 @@ const HomePage = () => {
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105 active:scale-95"
           >
-            {/* Note: I updated the button_colour hex in the URL to match the new Rose-600 color (e11d48) */}
             <img 
               src="https://img.buymeacoffee.com/button-api/?text=Buy us a coffee&emoji=&slug=alexmyl&button_colour=e11d48&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" 
               alt="Buy us a coffee"
