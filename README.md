@@ -1,5 +1,4 @@
 🍒 Anthoscope Landing Page
-A beautiful, interactive landing page for the Anthoscope project featuring animated cherry blossoms, gradient backgrounds, and smooth transitions.
 
 🚀 Quick Start
 Prerequisites
