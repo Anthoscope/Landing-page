@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const CherryBlossom = ({ clickCount }) => {
   const [fallingCherries, setFallingCherries] = useState([]);
-  // Get the base URL (e.g., /Anthoscope-Landing-page/)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const base = import.meta.env.BASE_URL;
 
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    
     if (clickCount > 0) {
       const newCherries = Array.from({ length: 4 }, (_, i) => ({
         id: Date.now() + i,
@@ -21,6 +24,7 @@ const CherryBlossom = ({ clickCount }) => {
         ));
       }, 5000);
     }
+    return () => window.removeEventListener('resize', handleResize);
   }, [clickCount]);
 
   return (
@@ -28,20 +32,20 @@ const CherryBlossom = ({ clickCount }) => {
       <div className="fixed top-0 right-0 pointer-events-none z-20">
         <div 
             style={{
-            transform: 'scale(1.8)',
+            // Scaling down the branch on mobile to avoid overlapping the logo
+            transform: isMobile ? 'scale(1.1)' : 'scale(1.8)',
             transformOrigin: 'top right',
-            marginRight: '-1cm',
+            marginRight: isMobile ? '-0.5cm' : '-1cm',
             }}
         >
             <img 
             src={`${base}images/cherry-blossom.gif`} 
             alt="Cherry Blossom"
-            className="w-64 h-64 object-contain"
+            className="w-48 h-48 md:w-64 md:h-64 object-contain"
             />
         </div>
-        </div>
+      </div>
 
-      {/* Simple falling cherries (These are emojis, so they don't need base paths) */}
       {fallingCherries.map(cherry => (
         <div
           key={cherry.id}
@@ -51,7 +55,7 @@ const CherryBlossom = ({ clickCount }) => {
             animationDelay: `${cherry.delay}s`
           }}
         >
-          <div className="text-3xl">🍒</div>
+          <div className="text-2xl md:text-3xl">🍒</div>
         </div>
       ))}
     </>

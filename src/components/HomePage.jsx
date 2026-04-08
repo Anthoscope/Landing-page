@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import CherryBlossom from './CherryBlossom';
 import AnimatedBackground from './AnimatedBackground';
 
-// Helper for paths
 const base = import.meta.env.BASE_URL;
 
 // --- Local SVG Components (Unchanged) ---
@@ -33,17 +32,17 @@ const HomePage = () => {
   };
 
   const buttonColor = clickCount > 0 
-  ? 'bg-rose-950 hover:bg-rose-900' // Darker red when clicked/launching
-  : 'bg-cherry-red hover:bg-rose-700'; // Cherry Red by default!
+  ? 'bg-rose-950 hover:bg-rose-900' 
+  : 'bg-cherry-red hover:bg-rose-700';
 
   return (
-    /* ADDED: selection classes to the main wrapper */
     <div className="relative min-h-screen overflow-hidden flex flex-col selection:bg-cherry-red selection:text-white">
-          <AnimatedBackground />
+      <AnimatedBackground />
       
+      {/* Responsive About Button */}
       <Link
         to="/about"
-        className="fixed top-6 right-6 z-30 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full text-gray-700 hover:text-cherry-red transition-colors duration-300 shadow-lg hover:shadow-xl font-medium border border-gray-100"
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-40 px-4 py-2 md:px-6 md:py-3 bg-white/80 backdrop-blur-sm rounded-full text-gray-700 hover:text-cherry-red transition-all duration-300 shadow-lg font-medium border border-gray-100 text-sm md:text-base"
       >
         About
       </Link>
@@ -51,20 +50,21 @@ const HomePage = () => {
       <CherryBlossom clickCount={clickCount} />
 
       <div className="relative z-10 flex flex-col items-center justify-center flex-grow px-4 text-center">
-        <div className="mb-0 -mt-10 flex items-center justify-center overflow-hidden h-48 md:h-64 w-full max-w-4xl">
+        {/* Adjusted scaling for mobile: scale-150 on small, scale-210 on medium+ */}
+        <div className="mb-0 -mt-10 flex items-center justify-center overflow-hidden h-40 md:h-64 w-full max-w-4xl">
           <img 
             src={`${base}images/anthologo_neg.png`} 
             alt="Anthoscope Logo" 
-            className="w-full h-full object-contain scale-[2.1] select-none pointer-events-none"/>
+            className="w-full h-full object-contain scale-[1.5] md:scale-[2.1] select-none pointer-events-none"/>
         </div>
         
-        <p className="text-xl md:text-2xl mb-10 max-w-2xl -mt-4 relative z-20 font-medium text-gray-800 tracking-wide">
+        <p className="text-lg md:text-2xl mb-10 max-w-2xl -mt-4 relative z-20 font-medium text-gray-800 tracking-wide px-4">
           Navigate allergy season with confidence.
         </p>
 
         <button
           onClick={handleButtonClick}
-          className={`px-10 py-4 text-2xl font-bold rounded-full text-white transition-all duration-500 transform hover:scale-105 shadow-xl ${buttonColor}`}
+          className={`px-8 py-3 md:px-10 md:py-4 text-xl md:text-2xl font-bold rounded-full text-white transition-all duration-500 transform hover:scale-105 shadow-xl ${buttonColor}`}
         >
           {clickCount > 0 ? 'Launching...' : 'Start Here'}
         </button>
@@ -74,15 +74,15 @@ const HomePage = () => {
         </div>
       </div>
 
-      <footer className="relative z-20 w-full px-8 py-6 flex flex-col md:flex-row items-center justify-between text-gray-600 text-sm">
-        <div className="flex items-center space-x-6 mb-6 md:mb-0 md:w-1/3">
-          <a href="https://instagram.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors transform hover:scale-110">
+      <footer className="relative z-20 w-full px-6 py-6 flex flex-col md:flex-row items-center justify-between text-gray-600 text-xs md:text-sm">
+        <div className="flex items-center space-x-6 mb-6 md:mb-0 md:w-1/3 justify-center md:justify-start">
+          <a href="https://instagram.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
             <InstagramIcon />
           </a>
-          <a href="https://linkedin.com/company/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors transform hover:scale-110">
+          <a href="https://linkedin.com/company/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
             <LinkedinIcon />
           </a>
-          <a href="https://github.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors transform hover:scale-110">
+          <a href="https://github.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
             <GithubIcon />
           </a>
         </div>
@@ -92,16 +92,11 @@ const HomePage = () => {
         </div>
 
         <div className="md:w-1/3 flex justify-center md:justify-end">
-          <a 
-            href="https://www.buymeacoffee.com/alexmyl" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="transition-transform hover:scale-105 active:scale-95"
-          >
+          <a href="https://www.buymeacoffee.com/alexmyl" target="_blank" rel="noopener noreferrer">
             <img 
               src="https://img.buymeacoffee.com/button-api/?text=Buy us a coffee&emoji=&slug=alexmyl&button_colour=e11d48&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" 
               alt="Buy us a coffee"
-              style={{ height: '42px', width: 'auto' }}
+              className="h-8 md:h-10 w-auto"
             />
           </a>
         </div>
