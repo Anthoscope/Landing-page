@@ -29,10 +29,12 @@ const CherryBlossom = ({ clickCount }) => {
 
   return (
     <>
-      <div className="fixed top-0 right-0 pointer-events-none z-20">
+      {/* 1. 'landscape:max-h-[500px]:hidden' hides it only on short screens (phones) tilted sideways.
+          2. It remains visible on laptops because their height is usually > 500px.
+      */}
+      <div className="fixed top-0 right-0 pointer-events-none z-20 landscape:max-h-[500px]:hidden">
         <div 
             style={{
-            // Scaling down the branch on mobile to avoid overlapping the logo
             transform: isMobile ? 'scale(1.1)' : 'scale(1.8)',
             transformOrigin: 'top right',
             marginRight: isMobile ? '-0.5cm' : '-1cm',
