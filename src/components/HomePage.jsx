@@ -40,7 +40,7 @@ const HomePage = () => {
     <div className="relative min-h-screen flex flex-col selection:bg-cherry-red selection:text-white">
       <AnimatedBackground />
       
-      {/* 1. TOP NAV: Fixed 'About' button */}
+      {/* 1. TOP NAV */}
       <Link
         to="/about"
         className="fixed top-4 right-4 md:top-6 md:right-6 z-40 px-5 py-2 md:px-6 md:py-3 bg-white/80 backdrop-blur-sm rounded-full text-gray-700 hover:text-cherry-red transition-all duration-300 shadow-lg font-medium border border-gray-100 text-sm md:text-base"
@@ -50,7 +50,7 @@ const HomePage = () => {
 
       <CherryBlossom clickCount={clickCount} />
 
-      {/* 2. MAIN CONTENT: Scaled for mobile to ensure everything fits on one screen */}
+      {/* 2. MAIN CONTENT */}
       <div className="relative z-10 flex flex-col items-center justify-center flex-grow px-4 text-center">
         <div className="mb-0 -mt-10 flex items-center justify-center overflow-hidden h-40 md:h-64 w-full max-w-4xl">
           <img 
@@ -75,11 +75,11 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* 3. FOOTER: Optimized for Laptop (Single Line) and Mobile (Scrollable Copyright) */}
+      {/* 3. FOOTER */}
       <footer className="relative z-20 w-full px-6 pb-6 text-gray-600">
         <div className="flex flex-row items-center justify-between">
           
-          {/* LEFT: Social Media (Tight space-x-3 on mobile, wider space-x-6 on md) */}
+          {/* LEFT: Social Media */}
           <div className="flex-1 flex items-center space-x-3 md:space-x-6 justify-start">
             <a href="https://instagram.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
               <InstagramIcon />
@@ -92,25 +92,32 @@ const HomePage = () => {
             </a>
           </div>
 
-          {/* MIDDLE: Copyright (Visible on Laptop, Hidden on Mobile screen load) */}
+          {/* MIDDLE: Copyright (Visible only on Laptop) */}
           <div className="hidden md:block flex-1 text-center font-medium text-xs tracking-widest uppercase opacity-60">
             ©2026 Anthoscope
           </div>
 
-          {/* RIGHT: Buy us a coffee (Always visible at the top-level fold) */}
+          {/* RIGHT: Narrower Coffee Button for mobile */}
           <div className="flex-1 flex justify-end">
             <a href="https://www.buymeacoffee.com/alexmyl" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105 active:scale-95">
+              {/* PC Version (With Text) */}
               <img 
                 src="https://img.buymeacoffee.com/button-api/?text=Buy us a coffee&emoji=&slug=alexmyl&button_colour=e11d48&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" 
                 alt="Buy us a coffee"
-                className="h-8 md:h-10 w-auto shadow-sm"
+                className="hidden md:block h-10 w-auto shadow-sm"
+              />
+              {/* Mobile Version (Narrow - Icon only) */}
+              <img 
+                src="https://img.buymeacoffee.com/button-api/?text=&emoji=☕&slug=alexmyl&button_colour=e11d48&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" 
+                alt="Buy us a coffee"
+                className="md:hidden h-10 w-auto shadow-sm rounded-xl"
               />
             </a>
           </div>
         </div>
 
-        {/* MOBILE ONLY COPYRIGHT: Only visible when the user swipes down on a phone */}
-        <div className="md:hidden mt-20 text-center font-medium text-[10px] tracking-widest uppercase opacity-50">
+        {/* MOBILE ONLY COPYRIGHT: Now pushed further down (mt-24) to require scrolling */}
+        <div className="md:hidden mt-24 text-center font-medium text-[10px] tracking-widest uppercase opacity-40">
           ©2026 Anthoscope
         </div>
       </footer>
