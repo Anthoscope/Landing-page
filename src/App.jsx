@@ -1,18 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 
 function App() {
-  // If we are in development mode, use "/"
-  // If we are in production (GitHub), use "/Anthoscope-Landing-page"
-  const baseName = import.meta.env.DEV ? '/' : '/Anthoscope-Landing-page';
-
   return (
-    <Router basename={baseName}>
+    <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        {/* If someone types a weird URL, send them back to the clean home page */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
