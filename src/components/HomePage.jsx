@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import CherryBlossom from './CherryBlossom';
 import AnimatedBackground from './AnimatedBackground';
 
+// Helper for handling base paths in Vite
 const base = import.meta.env.BASE_URL;
 
-// --- Icons (Unchanged) ---
+// --- Local SVG Components ---
 const InstagramIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
@@ -32,31 +33,33 @@ const HomePage = () => {
   };
 
   const buttonColor = clickCount > 0 
-  ? 'bg-rose-950 hover:bg-rose-900' 
-  : 'bg-cherry-red hover:bg-rose-700';
+    ? 'bg-rose-950 hover:bg-rose-900' 
+    : 'bg-cherry-red hover:bg-rose-700';
 
   return (
-    <div className="relative h-screen overflow-hidden flex flex-col selection:bg-cherry-red selection:text-white">
+    <div className="relative min-h-screen flex flex-col selection:bg-cherry-red selection:text-white">
       <AnimatedBackground />
       
+      {/* 1. TOP NAV: Fixed 'About' button */}
       <Link
         to="/about"
-        className="fixed top-4 right-4 md:top-6 md:right-6 z-40 px-4 py-2 md:px-6 md:py-3 bg-white/80 backdrop-blur-sm rounded-full text-gray-700 hover:text-cherry-red transition-all duration-300 shadow-lg font-medium border border-gray-100 text-sm md:text-base"
+        className="fixed top-4 right-4 md:top-6 md:right-6 z-40 px-5 py-2 md:px-6 md:py-3 bg-white/80 backdrop-blur-sm rounded-full text-gray-700 hover:text-cherry-red transition-all duration-300 shadow-lg font-medium border border-gray-100 text-sm md:text-base"
       >
         About
       </Link>
 
       <CherryBlossom clickCount={clickCount} />
 
+      {/* 2. MAIN CONTENT: Scaled for mobile to ensure everything fits on one screen */}
       <div className="relative z-10 flex flex-col items-center justify-center flex-grow px-4 text-center">
         <div className="mb-0 -mt-10 flex items-center justify-center overflow-hidden h-40 md:h-64 w-full max-w-4xl">
           <img 
             src={`${base}images/anthologo_neg.png`} 
             alt="Anthoscope Logo" 
-            className="w-full h-full object-contain scale-[1.5] md:scale-[2.1] select-none pointer-events-none"/>
+            className="w-full h-full object-contain scale-[1.4] md:scale-[2.1] select-none pointer-events-none"/>
         </div>
         
-        <p className="text-lg md:text-2xl mb-10 max-w-2xl -mt-4 relative z-20 font-medium text-gray-800 tracking-wide px-4">
+        <p className="text-lg md:text-2xl mb-8 md:mb-10 max-w-2xl -mt-4 relative z-20 font-medium text-gray-800 tracking-wide px-4">
           Navigate allergy season with confidence.
         </p>
 
@@ -67,43 +70,49 @@ const HomePage = () => {
           {clickCount > 0 ? 'Launching...' : 'Start Here'}
         </button>
         
-        <div className="mt-8 text-gray-500">
+        <div className="mt-6 md:mt-8 text-gray-500">
           <p className="text-sm font-medium">Cherries fallen: {clickCount}</p>
         </div>
       </div>
 
-      {/* MODIFIED FOOTER: Always a single row with Socials Left, Copyright Center, Coffee Right */}
-      <footer className="relative z-20 w-full px-6 py-8 flex flex-row items-center justify-between text-gray-600">
-        
-        {/* LEFT: Social Media */}
-        <div className="flex-1 flex items-center space-x-6 justify-start">
-          <a href="https://instagram.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
-            <InstagramIcon />
-          </a>
-          <a href="https://linkedin.com/company/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
-            <LinkedinIcon />
-          </a>
-          <a href="https://github.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
-            <GithubIcon />
-          </a>
+      {/* 3. FOOTER: Optimized for Laptop (Single Line) and Mobile (Scrollable Copyright) */}
+      <footer className="relative z-20 w-full px-6 pb-6 text-gray-600">
+        <div className="flex flex-row items-center justify-between">
+          
+          {/* LEFT: Social Media (Tight space-x-3 on mobile, wider space-x-6 on md) */}
+          <div className="flex-1 flex items-center space-x-3 md:space-x-6 justify-start">
+            <a href="https://instagram.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
+              <InstagramIcon />
+            </a>
+            <a href="https://linkedin.com/company/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
+              <LinkedinIcon />
+            </a>
+            <a href="https://github.com/anthoscope" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-red transition-colors">
+              <GithubIcon />
+            </a>
+          </div>
+
+          {/* MIDDLE: Copyright (Visible on Laptop, Hidden on Mobile screen load) */}
+          <div className="hidden md:block flex-1 text-center font-medium text-xs tracking-widest uppercase opacity-60">
+            ©2026 Anthoscope
+          </div>
+
+          {/* RIGHT: Buy us a coffee (Always visible at the top-level fold) */}
+          <div className="flex-1 flex justify-end">
+            <a href="https://www.buymeacoffee.com/alexmyl" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105 active:scale-95">
+              <img 
+                src="https://img.buymeacoffee.com/button-api/?text=Buy us a coffee&emoji=&slug=alexmyl&button_colour=e11d48&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" 
+                alt="Buy us a coffee"
+                className="h-8 md:h-10 w-auto shadow-sm"
+              />
+            </a>
+          </div>
         </div>
 
-        {/* MIDDLE: Copyright (Down/Center) */}
-        <div className="flex-1 text-center font-medium text-[10px] md:text-xs tracking-widest uppercase">
+        {/* MOBILE ONLY COPYRIGHT: Only visible when the user swipes down on a phone */}
+        <div className="md:hidden mt-20 text-center font-medium text-[10px] tracking-widest uppercase opacity-50">
           ©2026 Anthoscope
         </div>
-
-        {/* RIGHT: Buy us a coffee */}
-        <div className="flex-1 flex justify-end">
-          <a href="https://www.buymeacoffee.com/alexmyl" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-105">
-            <img 
-              src="https://img.buymeacoffee.com/button-api/?text=Buy us a coffee&emoji=&slug=alexmyl&button_colour=e11d48&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" 
-              alt="Buy us a coffee"
-              className="h-8 md:h-10 w-auto shadow-sm"
-            />
-          </a>
-        </div>
-
       </footer>
     </div>
   );
