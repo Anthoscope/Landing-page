@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-// FIX 1: Destructured onTreeClick so the component can receive it
 const CherryBlossom = ({ clickCount, onTreeClick }) => {
   const [fallingCherries, setFallingCherries] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTiltedPhone, setIsTiltedPhone] = useState(false);
   const base = import.meta.env.BASE_URL;
-
-  // FIX 2: Removed the early return from here so hooks execute in order safely
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,7 +41,6 @@ const CherryBlossom = ({ clickCount, onTreeClick }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, [clickCount]);
 
-  // Keep the conditional return here (after all hooks have finished running)
   if (isTiltedPhone) return null;
 
   return (
