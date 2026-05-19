@@ -26,12 +26,11 @@ const HomePage = () => {
   const [clickCount, setClickCount] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
 
-  const handleButtonClick = () => setClickCount(prev => prev + 1);
+  const handleCherryTreeClick = () => setClickCount(prev => prev + 1);
 
   // LOGIC: Detect if the page is scrolled
   useEffect(() => {
     const handleScroll = () => {
-      // If scroll position is more than 10px, we are no longer at the top
       setIsAtTop(window.scrollY < 10);
     };
 
@@ -56,7 +55,7 @@ const HomePage = () => {
 
       {/* CHERRY TREE: Controlled by scroll state */}
       <div className={`transition-opacity duration-500 ${isAtTop ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <CherryBlossom clickCount={clickCount} />
+        <CherryBlossom clickCount={clickCount} onTreeClick={handleCherryTreeClick}/>
       </div>
 
       <main className="relative z-10 flex flex-col items-center justify-center flex-grow px-4 text-center py-12 md:py-0">
@@ -72,7 +71,7 @@ const HomePage = () => {
         </p>
 
         <button
-          onClick={handleButtonClick}
+          onClick={handleCherryTreeClick} // FIX 3: Changed from handleButtonClick to handleCherryTreeClick
           className={`px-10 py-4 text-xl md:text-2xl font-bold rounded-full text-white transition-all duration-500 transform hover:scale-105 shadow-xl ${buttonColor}`}
         >
           {clickCount > 0 ? 'Launching...' : 'Start Here'}

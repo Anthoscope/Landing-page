@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const CherryBlossom = ({ clickCount }) => {
+// FIX 1: Destructured onTreeClick so the component can receive it
+const CherryBlossom = ({ clickCount, onTreeClick }) => {
   const [fallingCherries, setFallingCherries] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTiltedPhone, setIsTiltedPhone] = useState(false);
   const base = import.meta.env.BASE_URL;
+
+  // FIX 2: Removed the early return from here so hooks execute in order safely
 
   useEffect(() => {
     const handleResize = () => {
@@ -13,8 +16,6 @@ const CherryBlossom = ({ clickCount }) => {
       
       setIsMobile(width < 768);
       
-      // Logic: If width is greater than height AND height is small, it's a tilted phone.
-      // Laptops are landscape but height is usually > 600px, so they stay visible.
       if (width > height && height < 500) {
         setIsTiltedPhone(true);
       } else {
@@ -23,7 +24,7 @@ const CherryBlossom = ({ clickCount }) => {
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Run once on mount
+    handleResize(); 
 
     if (clickCount > 0) {
       const newCherries = Array.from({ length: 4 }, (_, i) => ({
@@ -43,23 +44,25 @@ const CherryBlossom = ({ clickCount }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, [clickCount]);
 
-  // If it's a tilted phone, we return null so the branch is completely removed from the DOM
+  // Keep the conditional return here (after all hooks have finished running)
   if (isTiltedPhone) return null;
 
   return (
     <>
-      <div className="fixed top-0 right-0 pointer-events-none z-20">
+      <div className="fixed top-0 right-0 pointer-events-auto z-20">
         <div 
-            style={{
+          onClick={onTreeClick} 
+          className="cursor-pointer" 
+          style={{
             transform: isMobile ? 'scale(1.1)' : 'scale(1.8)',
             transformOrigin: 'top right',
             marginRight: isMobile ? '-0.5cm' : '-1cm',
-            }}
+          }}
         >
             <img 
-            src={`${base}images/cherry-blossom.gif`} 
-            alt="Cherry Blossom"
-            className="w-48 h-48 md:w-64 md:h-64 object-contain"
+              src={`${base}images/cherry-blossom.gif`} 
+              alt="Cherry Blossom"
+              className="w-48 h-48 md:w-64 md:h-64 object-contain"
             />
         </div>
       </div>
@@ -67,7 +70,7 @@ const CherryBlossom = ({ clickCount }) => {
       {fallingCherries.map(cherry => (
         <div
           key={cherry.id}
-          className="fixed top-0 z-30 animate-fall"
+          className="fixed top-0 z-30 animate-fall pointer-events-none"
           style={{ 
             left: cherry.left,
             animationDelay: `${cherry.delay}s`
